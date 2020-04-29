@@ -143,7 +143,10 @@ NOTES:
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-  return 2;
+  // 根据摩尔根定律, (~(~x&~y)) => (x|y) 即x或y
+  // (~(x&y)) 排除掉x与y同时为真
+  // x或y并且排除掉x与y同时为真的情况 即为异或
+  return ~(~x&~y)&~(x&y);
 }
 /* 
  * tmin - return minimum two's complement integer 
@@ -152,8 +155,8 @@ int bitXor(int x, int y) {
  *   Rating: 1
  */
 int tmin(void) {
-
-  return 2;
+  //最小的补码是 1000...000
+  return 1<<31;
 
 }
 //2
@@ -165,7 +168,9 @@ int tmin(void) {
  *   Rating: 1
  */
 int isTmax(int x) {
-  return 2;
+  //最大值是‭01111111111111111111111111111111‬  = 0x7fff ffff
+  //让x与最大值异或，如果结果是0，那么说明这个数就是最大值 
+  return !(x ^ 0X7FFFFFFF);
 }
 /* 
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
@@ -176,7 +181,11 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-  return 2;
+  //偶数位全为0，奇数位全为1的数是0xAAAAAAAA。
+  //1. y = (x & 0xAAAAAAAA) => 将x的偶数位都变成0
+  //2. y^0xAAAAAAAA => 如果结果为0，说明是奇数位都是1
+  int y = x & 0xAAAAAAAA;
+  return !(y^0xAAAAAAAA);
 }
 /* 
  * negate - return -x 
@@ -186,7 +195,8 @@ int allOddBits(int x) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+  //-x=~x+1
+  return ~x+1;
 }
 //3
 /* 
