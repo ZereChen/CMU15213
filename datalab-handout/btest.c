@@ -325,7 +325,7 @@ static int test_function(test_ptr t) {
 	arg_test_range[1] = arg_test_range[0];
 	arg_test_range[2] = arg_test_range[0];
     }
-
+	printf("arg_test_range");
     /* Sanity check on the ranges */
     if (arg_test_range[0] < 1)
 	arg_test_range[0] = 1;
