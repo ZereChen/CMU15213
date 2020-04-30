@@ -3,3 +3,6 @@ datalab-handout/fshow
 datalab-handout/ishow
 .vscode/*.json
 *.exe
+main
+main.c
+main.s
